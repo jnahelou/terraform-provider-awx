@@ -36,10 +36,10 @@ func Provider() *schema.Provider {
 				DefaultFunc: schema.EnvDefaultFunc("AWX_PASSWORD", "password"),
 			},
 			"token": {
-				Type:      schema.TypeString,
-				Optional:  true,
-				Sensitive: true,
-				Default:   "",
+				Type:        schema.TypeString,
+				Optional:    true,
+				Sensitive:   true,
+				DefaultFunc: schema.EnvDefaultFunc("AWX_TOKEN", ""),
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
