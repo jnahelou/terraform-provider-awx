@@ -12,6 +12,7 @@ package awx
 
 import (
 	"context"
+	"fmt"
 	"strconv"
 	"time"
 
@@ -33,12 +34,20 @@ func dataSourceCredentials() *schema.Resource {
 							Type:     schema.TypeInt,
 							Computed: true,
 						},
+						"name": {
+							Type:     schema.TypeString,
+							Computed: true,
+						},
 						"username": {
 							Type:     schema.TypeString,
 							Computed: true,
 						},
 						"kind": {
 							Type:     schema.TypeString,
+							Computed: true,
+						},
+						"credential_type_id": {
+							Type:     schema.TypeInt,
 							Computed: true,
 						},
 					},
@@ -57,17 +66,20 @@ func dataSourceCredentialsRead(ctx context.Context, d *schema.ResourceData, m in
 		diags = append(diags, diag.Diagnostic{
 			Severity: diag.Error,
 			Summary:  "Unable to fetch credentials",
-			Detail:   "Unable to fetch credentials from AWX API",
+			Detail:   fmt.Sprintf("Unable to fetch credentials from AWX API with error: %s.", err),
 		})
 		return diags
 	}
 
 	parsedCreds := make([]map[string]interface{}, 0)
 	for _, c := range creds {
+		fmt.Printf("%+v\n", c)
 		parsedCreds = append(parsedCreds, map[string]interface{}{
-			"id":       c.ID,
-			"username": c.Inputs["username"],
-			"kind":     c.Kind,
+			"id":                 c.ID,
+			"name":               c.Name,
+			"username":           c.Inputs["username"],
+			"kind":               c.Kind,
+			"credential_type_id": c.CredentialTypeID,
 		})
 	}
 
