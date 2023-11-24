@@ -8,7 +8,7 @@ OS_ARCH=linux_amd64 #darwin_amd64
 
 default: install
 
-build:
+build: generate
 	go build -o ${BINARY}
 
 release:
@@ -35,3 +35,6 @@ test:
 
 testacc:
 	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m
+
+generate:
+	go generate  ./...
