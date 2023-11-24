@@ -1,15 +1,3 @@
-/*
-*TBD*
-
-Example Usage
-
-```hcl
-data "awx_notification_template" "default" {
-  name            = "private_services"
-}
-```
-
-*/
 package awx
 
 import (

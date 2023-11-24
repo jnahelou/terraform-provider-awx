@@ -1,13 +1,3 @@
-/*
-Use this data source to query Organizations.
-
-Example Usage
-
-```hcl
-data "awx_organizations" "all_orgs" {}
-```
-
-*/
 package awx
 
 import (

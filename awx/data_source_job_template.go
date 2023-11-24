@@ -1,15 +1,3 @@
-/*
-*TBD*
-
-Example Usage
-
-```hcl
-data "awx_job_template" "default" {
-  name = "Default"
-}
-```
-
-*/
 package awx
 
 import (

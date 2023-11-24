@@ -1,0 +1,23 @@
+---
+page_title: "Provider: AWX"
+description: |-
+  Ansible Tower Provider for handle Tower Projects with [rest](https://docs.ansible.com/ansible-tower/latest/html/towerapi/api_ref.html).
+---
+
+# AWX Provider
+
+Ansible Tower Provider for handle Tower Projects with [rest](https://docs.ansible.com/ansible-tower/latest/html/towerapi/api_ref.html).
+
+## Example Usage
+
+Using username and password:
+
+{{ tffile "examples/provider/provider_user.tf" }}
+
+Using token:
+
+{{ tffile "examples/provider/provider_token.tf" }}
+
+⚠️ Be careful, if you set both token and username/password the token will have the precedence.
+
+{{ .SchemaMarkdown | trimspace }}

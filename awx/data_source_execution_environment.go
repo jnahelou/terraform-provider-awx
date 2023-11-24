@@ -1,15 +1,3 @@
-/*
-*TBD*
-
-Example Usage
-
-```hcl
-data "awx_execution_environment" "default" {
-  name = "Default"
-}
-```
-
-*/
 package awx
 
 import (

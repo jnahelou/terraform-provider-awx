@@ -1,15 +1,3 @@
-/*
-*TBD*
-
-Example Usage
-
-```hcl
-data "awx_project" "default" {
-  name = "Default"
-}
-```
-
-*/
 package awx
 
 import (

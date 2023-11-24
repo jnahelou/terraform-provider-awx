@@ -1,13 +1,3 @@
-/*
-*TBD*
-
-Example Usage
-
-```hcl
-*TBD*
-```
-
-*/
 package awx
 
 import (

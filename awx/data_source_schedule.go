@@ -1,15 +1,3 @@
-/*
-*TBD*
-
-Example Usage
-
-```hcl
-data "awx_schedule" "default" {
-  name            = "private_services"
-}
-```
-
-*/
 package awx
 
 import (

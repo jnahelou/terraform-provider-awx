@@ -3,6 +3,7 @@ package awx
 import (
 	"context"
 	"crypto/tls"
+	"fmt"
 	"net/http"
 
 	awx "github.com/denouche/goawx/client"
@@ -17,29 +18,33 @@ func Provider() *schema.Provider {
 				Type:        schema.TypeString,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AWX_HOSTNAME", "http://localhost"),
+				Description: "The API endpoint for AWX.",
 			},
 			"insecure": {
 				Type:        schema.TypeBool,
 				Optional:    true,
 				Default:     false,
-				Description: "Disable SSL verification of API calls",
+				Description: "Disable SSL verification of API calls.",
 			},
 			"username": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AWX_USERNAME", "admin"),
+				Description: "The username for API access.",
 			},
 			"password": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Sensitive:   true,
 				DefaultFunc: schema.EnvDefaultFunc("AWX_PASSWORD", "password"),
+				Description: "The password for API access.",
 			},
 			"token": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Sensitive:   true,
 				DefaultFunc: schema.EnvDefaultFunc("AWX_TOKEN", ""),
+				Description: "The AWX token for API access.",
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
@@ -134,7 +139,7 @@ func providerConfigure(ctx context.Context, d *schema.ResourceData) (interface{}
 		diags = append(diags, diag.Diagnostic{
 			Severity: diag.Error,
 			Summary:  "Unable to create AWX client",
-			Detail:   "Unable to auth user against AWX API: check the hostname, username and password",
+			Detail:   fmt.Sprintf("Unable to auth user against AWX API: check the hostname, username and password. Error: %s", err),
 		})
 		return nil, diags
 	}
